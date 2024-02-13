@@ -3,6 +3,7 @@ import axios from "./axiosConfig";
 import CardIcon from "./assets/card.png";
 import CashIcon from "./assets/cash.png";
 import WaiterIcon from "./assets/waiter.png";
+import HistoryIcon from "./assets/history.png";
 
 interface Action {
   requestId: number;
@@ -14,6 +15,7 @@ interface Action {
 
 const ManagerPage: React.FC = () => {
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
+  const [activeActions, setActiveActions] = useState<Action[]>([]);
   const [allActions, setAllActions] = useState<Action[]>([]);
 
   useEffect(() => {
@@ -21,7 +23,8 @@ const ManagerPage: React.FC = () => {
       try {
         const response = await axios.get("/recent-requests");
         const filteredActions = response.data.filter((action: Action) => action.requestStatus);
-        setAllActions(filteredActions);
+        setActiveActions(filteredActions);
+        setAllActions(response.data);
       } catch (error) {
         console.error("Error fetching recent requests:", error);
       }
@@ -51,7 +54,8 @@ const ManagerPage: React.FC = () => {
       await axios.put(`/close-request/${requestId}`);
       const response = await axios.get("/recent-requests");
       const filteredActions = response.data.filter((action: Action) => action.requestStatus);
-      setAllActions(filteredActions);
+      setActiveActions(filteredActions);
+      setAllActions(response.data);
       setSelectedRow(null);
     } catch (error) {
       console.error("Error closing action:", error);
@@ -118,7 +122,7 @@ const ManagerPage: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {allActions.map((action, index) => {
+                    {activeActions.map((action, index) => {
                       if (
                         category === "chelner" &&
                         action.description !== "card" &&
@@ -223,7 +227,9 @@ const ManagerPage: React.FC = () => {
           </div>
         </div>
         <div className="history">
-          <h2>Istoric</h2>
+          <h2 className="category">Istoric
+            <img src={HistoryIcon} alt="" className="icon" />
+          </h2>
           <table className="all-actions-history-table">
             <thead>
               <tr>
