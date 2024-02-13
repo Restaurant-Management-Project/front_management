@@ -51,7 +51,8 @@ const ManagerPage: React.FC = () => {
       await axios.put(`/close-request/${requestId}`);
       const response = await axios.get("/recent-requests");
       const filteredActions = response.data.filter((action: Action) => action.requestStatus);
-      setAllActions(filteredActions);;
+      setAllActions(filteredActions);
+      setSelectedRow(null);
     } catch (error) {
       console.error("Error closing action:", error);
     }
