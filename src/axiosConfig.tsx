@@ -1,8 +1,8 @@
 import axios from "axios";
 const instance = axios.create({
-  baseURL: "https://demo-hsh4.onrender.com/api/v1/",
+  baseURL: "http://localhost:8001/v1/api",
   headers: {
-    "ngrok-skip-browser-warning": "skip-browser-warning",
+    // "ngrok-skip-browser-warning": "skip-browser-warning",
   },
   // withCredentials: true,
 });
