@@ -1,0 +1,86 @@
+.settings-container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.zones-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.zone-card {
+    background-color: #2d2d2d;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    border: 2px solid #555;
+    text-align: center;
+    color: #F3F3F3;
+}
+
+.assigned-waiters {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.waiter-select {
+    margin-top: 10px;
+}
+
+.waiter-select button,
+.zone-card button {
+    margin: 5px;
+    padding: 6px 12px;
+
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.assigned-waiters ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.assigned-waiters li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #2c2c2c;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+}
+
+.unassign-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    width: 50px;
+    transition: transform 0.1s ease;
+}
+
+.unassign-btn:hover {
+    transform: scale(1.2);
+}
+
+.title {
+   align-self: center;
+    justify-self: center;
+}
+.nav-icon {
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.nav-icon:hover {
+    transform: scale(1.2);
+}

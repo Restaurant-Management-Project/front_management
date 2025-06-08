@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "./axiosConfig";
 import CardIcon from "./assets/card.png";
 import CashIcon from "./assets/cash.png";
 import WaiterIcon from "./assets/waiter.png";
 import HistoryIcon from "./assets/history.png";
+import SettingsIcon from "./assets/settings.svg";
 
 interface Action {
   request_type: string;
@@ -18,6 +20,11 @@ const ManagerPage: React.FC = () => {
   const [activeActions, setActiveActions] = useState<Action[]>([]);
   const [allActions, setAllActions] = useState<Action[]>([]);
   const [_tick, setTick] = useState(0);
+  const navigate = useNavigate();
+
+  const goToSettings = () => {
+    navigate('/settings');
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -274,9 +281,16 @@ const ManagerPage: React.FC = () => {
             </div>
           </div>
           <div className="history">
-            <h2 className="category">History
-              <img src={HistoryIcon} alt="" className="icon" />
-            </h2>
+            <div className="header">
+              <h2 className="category">
+                History
+                <img src={HistoryIcon} alt="" className="icon" />
+              </h2>
+              <h4 className="settings" onClick={goToSettings}>
+                Settings
+                <img src={SettingsIcon} alt="Settings" className="smallIcon" />
+              </h4>
+            </div>
             <table className="all-actions-history-table">
               <thead>
               <tr>
